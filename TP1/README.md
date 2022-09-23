@@ -1,4 +1,4 @@
-# ITBA-RedesNeurales-TP1
+# RedesNeurales-TP1
 Repository for TP1, André Torvestad, september 2022
 
 The included notebooks are for solving TP1 in Redes Neurales en Bioingeneria at ITBA, september 2022. There are two problems to be solved: one classification problem and one regression problem. The solutions and explanation can be found in their respective notebooks. 
