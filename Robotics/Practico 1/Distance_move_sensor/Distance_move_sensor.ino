@@ -14,16 +14,8 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(TRIG, OUTPUT);
   pinMode(ECHO, INPUT);
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(9);  // attaches the u on pin 9 to the servo object
   Serial.begin(9600);
-
-  TCCR1A = 0;
-  TCCR1B = 0;
-
-  TCNT1 = 64286; // = 65536 - 16MHz/256/50Hz (every 20ms)
-  TCCR1B |= (1<<CS12);
-  TIMSK1 |= (1<<TOIE1);
-  interrupts(); // Enable interrupts
 }
 
 
@@ -52,7 +44,6 @@ void moveServo(){
     delay(15);                       // waits 15 ms for the servo to reach the position
   }
 }
-
 
 
 void loop() {
