@@ -99,15 +99,14 @@ class LightSensor
   }
   
   int readLight(int ldrPin) { //LOW: 30-50, HIGH: 300 ish
-    lightSensor = analogRead(ldrPin);
-
+    return analogRead(ldrPin);
     //define values >100 as HIGH LIGHT, <100 as LOW LIGHT
   }
   
   void Update() {
     if ((millis() - lastUpdate)) > updateInterval) {
       lastUpdate = millis();
-      lightValue = readDistance(ldrPin);
+      lightValue = readLight(ldrPin);
     }
   } 
 }
@@ -115,10 +114,10 @@ class LightSensor
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  robotMartin = Vehicle(//place pins here);
-  leftLightSensor = LightSensor(//place pins here);
-  rightLightSensor = LightSensor(//place other pins here);
-  distanceSensor = DistanceSensor(//pins);
+  robotMartin = Vehicle(/*place pins here*/);
+  leftLightSensor = LightSensor(/*place pins here*/);
+  rightLightSensor = LightSensor(/*place pins here*/);
+  distanceSensor = DistanceSensor(/*place pins here*/);
 }
 
 void loop() {
