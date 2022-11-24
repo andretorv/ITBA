@@ -17,8 +17,10 @@ Servo rightLeftServo;
 
 #define increment 10
 
-int rightLeftMode = 0;
-int upDownMode = 0;
+
+int vertPos = 180;
+int horiPos = 90;
+
 
 void setup(){
   //define pin numbers of the servo motors
@@ -27,44 +29,91 @@ void setup(){
 
   //starting position of the servo motors
   delay(5); //estaba 10
-  upDownServo.write(closed);
-  rightLeftServo.write(middle);
+  upDownServo.write(vertPos);
+  rightLeftServo.write(horiPos);
 }
 
-int incrementLeftRight(int mode) {
-  // move left or right, with increments
-  if (mode == 0) { // Move right
-    newPosition = currentPosition + increment;
-    rightLeftServo.write(newPosition);
-    return newPosition;
-  } else {
-    newPosition = currentPosition - increment;
-    rightLeftServo.write(newPosition);
-    return newPosition;
+
+
+
+
+void moveUp(int setpoint) {
+  int startPoint = vertPos;
+  for (vertPos = startPoint; vertPos <= setpoint; vertPos += 1) {
+    upDownServo.write(vertPos);
+    delay(15);
   }
-  return currentPosition
 }
 
-int incrementUpDown(int mode) {
-  // move left or right, with increments
-  if (mode == 0) { // Move up
-    newPosition = currentPosition + increment;
-    upDownServo.write(newPosition);
-    return newPosition;
-  } else {
-    newPosition = currentPosition - increment;
-    upDownServo.write(newPosition);
-    return newPosition;
+void moveDown(int setpoint) {
+  int startPoint = vertPos;
+  for (vertPos = startPoint; vertPos >= setpoint; vertPos -= 1) {
+    upDownServo.write(vertPos);
+    delay(15);
   }
-  return currentPosition
 }
 
+void  lookRight(int setpoint) {
+  int startPoint = horiPos;
+  for (horiPos = startPos; horiPos >= setpoint; horiPos -= 1) {
+    rightLeftServo.write(horiPos);
+    delay(15);
+  }
+}
+
+void  lookLeft(int setpoint) {
+  int startPoint = horiPos;
+  for (horiPos = startPos; horiPos <= setpoint; horiPos += 1) {
+    rightLeftServo.write(horiPos);
+    delay(15);
+  }
+}
+
+void moveHorizontal(int setpoint) {
+  int startPoint = horiPos;
+  int dir = setpoint - startPoint;
+  if (dir > 0) {
+    moveLeft(setpoint);
+  } else {
+    moveRight(setpoint);
+  }
+}
+
+void moveVertical(int setpoint) {
+  int startPoint = vertPos;
+  int dir = setpoint - starTPoint;
+  if (dir > 0) {
+    moveUp(setpoint);
+  } else {
+    moveDown(setpoint);
+  }
+}
 
 
 void loop(){
-  
+
+  delay(1000);
+  moveDown(145);
+  delay(1000);
+  moveDown(90);
+  delay(1000);
+  moveUp(180);
+
+
+  delay(1000);
+
+  upDownServo.write(0);
+  delay(2000);
+  upDownServo.write(90);
+  delay(2000);
+  upDownServo.write(180);
+  /*
   delay(1000); //estaba 1000
   upDownServo.write(halfOpen);
+
+  upDwonServo.write(halfOpen + 10);
+  upDownServo.write(halfOpen + 20);
+  
   delay(waitTime);
   rightLeftServo.write(right);
   delay(waitTime);
@@ -105,4 +154,5 @@ void loop(){
   rightLeftServo.write(left);
   delay(waitTime);
   rightLeftServo.write(middle);
+  */
 }

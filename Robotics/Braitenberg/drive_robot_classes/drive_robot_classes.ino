@@ -41,7 +41,7 @@ class Vehicle
   unsigned long lastUpdate;
 
   public:
-  Vehicle() {
+  Vehicle(int motorPin1, int motorPin2, int motorPin3, int motorPin4) {
     // setup for motors
     pinMode(motor1pin1, OUTPUT);
     pinMode(motor1pin2, OUTPUT);
@@ -122,6 +122,11 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
+
+  // Update
+  robotMartin.Update();
+  leftLightSensor.Update();
+  rightLightSensor.Update();
+  distanceSensor.Update();
 
 }

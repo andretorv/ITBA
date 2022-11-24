@@ -84,14 +84,10 @@ void driveLuz() {
   int vRight = lightToVelocity(ldrRight);
   int vLeft = lightToVelocity(ldrLeft);
 
-  analogWrite(pwm1, vRight); //ENA pin
-  analogWrite(pwm2, vLeft); //ENB pin
-
 
   if (ldrLeft >= 100) { // too much light, go backwards
     //esta yendo para atras
-    digitalWrite(motorIn1, LOW);
-    digitalWrite(motorIn2, HIGH);
+    driveForward(
   }
   else  { // little light, keep going
     //ir para adelante
@@ -113,9 +109,9 @@ void driveLuz() {
 ////////////////////////////////////////////
 // Code for driving the vehicle:
 ////////////////////////////////////////////
-void driveForward(int v) {
-  analogWrite(pwm1, v); //ENA pin
-  analogWrite(pwm2, v); //ENB pin
+void driveForward(int vleft, vright) {
+  analogWrite(pwm1, vleft); //ENA pin
+  analogWrite(pwm2, vright); //ENB pin
 
   //Controlling spin direction of motors:
   digitalWrite(motorIn1, LOW);
